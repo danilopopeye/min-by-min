@@ -1,0 +1,24 @@
+/* general */
+ul { margin:0;padding:0;list-style-type:none; }
+p { margin:0; }
+body { width:980px;margin:20px auto;font-family:arial;font-size:0.75em; }
+
+/* placares outros jogos simultâneos e/ou encerrados */
+#placares { background:#efefef;padding:10px;border:1px solid #888; }
+#placares table { padding:0;border-collapse:collapse;width:100%;margin-top:5px; }
+#placares table td { text-align:center;background:#fff;padding:5px;border-left:1px solid #000;font-size:13px; }
+#placares table td:first-child { border-left:0; }
+
+/* placar resultado jogo corrente */
+#placar-principal { clear:both;padding:10px 20px;text-align:center;font:bold 20px arial;background:#aaa; }
+
+/* barra dinâmica com os ícones dos eventos */
+#barra-minuto { background:#888;padding:3px 10px; }
+#barra-minuto #barraMin { background:#000;height:5px;width:20px;margin-left:50px; }
+#barra-minuto #timeLine { clear:both;height:20px; }
+#barra-minuto #timeLine em { font:bold 11px arial;color:#fff;padding:3px 0;display:block;float:left; }
+
+/* narracao dos eventos */
+#narracao { height:300px;overflow:auto;border:1px solid #999;padding:10px }
+#narracao p { background:#aaa;padding:5px 10px;color:#fff;font-weight:bold; }
+#narracao li { padding:2px 0; }

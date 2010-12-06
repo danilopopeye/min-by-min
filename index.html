@@ -1,0 +1,75 @@
+<html dir="ltr" xml:lang="pt-br" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Minuto a minuto</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<link href="prototype/css/style.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<h1>Placar</h1>
+
+<div id="placares">
+	<p><strong>Outros jogos da rodada:</strong></p>
+	<table>
+		<tr>
+			<td>Itumbiara 5 x 0 S&atilde;o Bento</td>
+			<td>Ipatinga 2 x 5 Noroeste</td>
+			<td>CSA 0 x 1 Cianorte</td>
+			<td>Brasiliense 1 x 3 CSV</td>
+		</tr>
+	</table>
+	<div id="placar-principal">Tricolor 6 x 0 Resto</div>
+</div>
+
+<div id="barra-minuto">
+	<div id="timeLine">
+		<em>Time A</em>
+	</div>
+	<div id="barraMin">&nbsp;</div>
+	<div id="timeLine">
+		<em>Time B</em>
+	</div>
+</div>
+
+<div id="narracao">
+	<ul></ul>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+<script type="text/javascript" src="Socket.IO-node/support/socket.io-client/socket.io.js"></script>
+<script type="text/javascript">
+	var process = new Object(), socket = new io.Socket(null, { port: 8080, rememberTransport: false });
+
+	process.announcement = function( raw ){
+		$('ul').append(
+			'<li>'+
+				'<p>'+ raw.announcement +'</p>'+
+			'</li>'
+		);
+	}
+
+	process.message = function( raw ){
+		$('ul').append(
+			'<li>'+ ( raw.from + ': ' || '' ) + raw.message + '</li>'
+		);
+	}
+
+	socket.connect();
+
+	// be polite and say hello
+	socket.on('connect', function(){
+		socket.send( 'Olá' );
+	});
+
+	socket.on('message', function(raw){
+		console && console.log( 'message', raw );
+
+		raw.announcement && process.announcement( raw );
+
+		raw.message && process.message( raw );
+	});
+</script>
+</body>
+</html>

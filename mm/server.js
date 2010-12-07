@@ -1,7 +1,8 @@
-module.exports = {
+// MM.Server
+var Server = module.exports = {
 	create: function(request, response) {
-		response.writeHead( 200, { 'Content-Type': 'text/plain' });
-		response.write('Socket.IO', 'utf8');
+		response.writeHead( 405, { 'Content-Type': 'text/plain' });
+		response.write('Nothing to see here, move along!', 'utf8');
 		response.end();
 	}
 };

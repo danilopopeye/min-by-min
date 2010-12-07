@@ -39,37 +39,6 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 <script type="text/javascript" src="Socket.IO-node/support/socket.io-client/socket.io.js"></script>
-<script type="text/javascript">
-	var process = new Object(), socket = new io.Socket(null, { port: 8080, rememberTransport: false });
-
-	process.announcement = function( raw ){
-		$('ul').append(
-			'<li>'+
-				'<p>'+ raw.announcement +'</p>'+
-			'</li>'
-		);
-	}
-
-	process.message = function( raw ){
-		$('ul').append(
-			'<li>'+ ( raw.from + ': ' || '' ) + raw.message + '</li>'
-		);
-	}
-
-	socket.connect();
-
-	// be polite and say hello
-	socket.on('connect', function(){
-		socket.send( 'Olá' );
-	});
-
-	socket.on('message', function(raw){
-		console && console.log( 'message', raw );
-
-		raw.announcement && process.announcement( raw );
-
-		raw.message && process.message( raw );
-	});
-</script>
+<script type="text/javascript" src="mm.js"></script>
 </body>
 </html>

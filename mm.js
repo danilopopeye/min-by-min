@@ -11,6 +11,8 @@
 			this.socket.on('connect', this.onConnection);
 
 			this.socket.on('message', this.onMessage );
+
+			this.Bar.init();
 		},
 
 		announcement: function( raw ){
@@ -49,6 +51,23 @@
 			raw.announcement && MM.announcement( raw );
 
 			raw.message && MM.message( raw );
+
+			raw.time && MM.Bar.update( raw.time );
+		},
+		
+		Bar: {
+			time: 0,
+			element: $('#barraMin'),
+			init: function(){
+				this.width = $('#barra-minuto').innerWidth() - 50 - 50;
+				this.step = parseInt( this.width / 50 );
+				this.update( this.time );
+			},
+			update: function( time ){
+				this.element.animate({
+					width: ( this.time = time ) * this.step || 1
+				}, 'slow');
+			}
 		}
 	};
 

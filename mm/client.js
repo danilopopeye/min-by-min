@@ -6,8 +6,8 @@ var Client = module.exports = {
 		});
 	},
 	onDisconnect: function( client ){
-		Client.client.broadcast({
-			announcement: client.id + ' disconnected'
+		client.broadcast({
+			announcement: client.sessionId + ' disconnected'
 		});
 	}
 };

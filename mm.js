@@ -1,5 +1,9 @@
 (function(){
+	var d = d = new Date();
 	window.MM = {
+		game: {
+			id: d.getDate() + d.getMonth() + d.getFullYear()
+		},
 		socket: new io.Socket(null, { port: 8080, rememberTransport: false }),
 		init: function(){
 			this.socket.connect();
@@ -10,9 +14,11 @@
 		},
 
 		announcement: function( raw ){
+			var annon = raw.announcement;
+
 			$('ul').append(
 				'<li>'+
-					'<p>'+ raw.announcement +'</p>'+
+					'<p>'+ ( annon.message || annon ) +'</p>'+
 				'</li>'
 			);
 		},
@@ -21,13 +27,24 @@
 				'<li>'+ ( raw.from + ': ' || '' ) + raw.message + '</li>'
 			);
 		},
-		
+
 		// socket events
 		onConnection: function(){
-			MM.socket.send( +new Date() );
+			MM.socket.send({
+				game: MM.game.id
+			});
+
+			return;
+
+			setTimeout(function(){
+				MM.socket.send({
+					realm: MM.realmName,
+					message: 'mensagem pro realm'
+				});
+			}, 1000);
 		},
 		onMessage: function(raw){
-			console && console.log( 'message', raw );
+			console && console.log( 'message', arguments );
 
 			raw.announcement && MM.announcement( raw );
 

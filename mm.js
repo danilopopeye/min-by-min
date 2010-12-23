@@ -61,7 +61,6 @@
 			init: function(){
 				this.width = $('#barra-minuto').innerWidth() - 50 - 50;
 				this.step = parseInt( this.width / 50 );
-				this.update( this.time );
 			},
 			update: function( time ){
 				this.element.animate({

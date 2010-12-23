@@ -14,9 +14,9 @@ body { width:980px;margin:20px auto;font-family:arial;font-size:0.75em; }
 
 /* barra dinâmica com os ícones dos eventos */
 #barra-minuto { background:#888;padding:3px 10px; }
-#barra-minuto #barraMin { background:#000;height:5px;width:20px;margin-left:50px; }
-#barra-minuto #timeLine { clear:both;height:20px; }
-#barra-minuto #timeLine em { font:bold 11px arial;color:#fff;padding:3px 0;display:block;float:left; }
+#barra-minuto #barraMin { background:#000;height:5px;width:0px;margin-left:50px; }
+#barra-minuto .timeLine { clear:both;height:20px; }
+#barra-minuto .timeLine em { font:bold 11px arial;color:#fff;padding:3px 0;display:block;float:left; }
 
 /* narracao dos eventos */
 #narracao { height:300px;overflow:auto;border:1px solid #999;padding:10px }

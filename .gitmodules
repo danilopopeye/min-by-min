@@ -4,3 +4,6 @@
 [submodule "Socket.IO-node"]
 	path = Socket.IO-node
 	url = https://github.com/LearnBoost/Socket.IO-node.git
+[submodule "node-mongodb-native"]
+	path = node-mongodb-native
+	url = https://github.com/christkv/node-mongodb-native.git

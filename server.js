@@ -16,13 +16,5 @@ socket.on( 'connection', MM.Socket.onConnection );
 MM.SERVER = server;
 MM.SOCKET = socket;
 
-// GAME
-MM.Game = {};
-MM.Game.TIME = 0;
-MM.Game.update = function( socket ){
-	socket.broadcast({
-		time: MM.Game.TIME++
-	});
-}
-
-setInterval( MM.Game.update, 1000 * 3, socket );
+// Kick off
+MM.Game.init();

@@ -2,15 +2,13 @@
 var Socket = module.exports = {
 	Client: require('./client'),
 	onConnection: function( client ){
+		var Game = module.parent.exports.Game;
+
 		// be polite
 		client.send({ announcement: {
-			id: client.sessionId
+			id: client.sessionId,
+			score: Game.Match
 		} });
-
-		// tell everyone about it
-		client.broadcast({
-			announcement: client.sessionId + ' connected'
-		});
 
 		// client sends a message
 		client.on( 'message', function( content ){

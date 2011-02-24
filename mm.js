@@ -1,5 +1,5 @@
 (function(){
-	var d = d = new Date();
+	var d = new Date();
 	window.MM = {
 		game: {
 			id: d.getDate() + d.getMonth() + d.getFullYear()
@@ -8,59 +8,66 @@
 		init: function(){
 			this.socket.connect();
 
-			this.socket.on('connect', this.onConnection);
-
 			this.socket.on('message', this.onMessage );
 
 			this.Bar.init();
 		},
 
-		announcement: function( raw ){
-			var annon = raw.announcement;
-
+		announcement: function( message ){
 			$('ul').append(
 				'<li>'+
-					'<p>'+ ( annon.message || annon ) +'</p>'+
+					'<p>'+ MM.Bar.time + ': ' + message +'</p>'+
 				'</li>'
 			);
 		},
-		message: function( raw ){
+		message: function( message ){
 			$('ul').append(
-				'<li>'+ ( raw.from + ': ' || '' ) + raw.message + '</li>'
+				'<li>'+ MM.Bar.time + ': ' + message + '</li>'
 			);
 		},
 
-		// socket events
-		onConnection: function(){
-			MM.socket.send({
-				game: MM.game.id
-			});
-
-			return;
-
-			setTimeout(function(){
-				MM.socket.send({
-					realm: MM.realmName,
-					message: 'mensagem pro realm'
-				});
-			}, 1000);
-		},
-		onMessage: function(raw){
+		onMessage: function( raw ){
 			console && console.log( 'message', arguments );
 
-			raw.announcement && MM.announcement( raw );
+			MM.Bar.update( raw.time );
 
-			raw.message && MM.message( raw );
+			if( raw.play ){
+				if( raw.play.goal ){
+					MM.goal( raw.play.goal );
+					MM.announcement( raw.play.text )
+				} else {
+					MM.message( raw.play.text );
+				}
+			}
 
-			raw.time && MM.Bar.update( raw.time );
+			raw.announcement && MM.score( raw.announcement.score );
 		},
-		
+
+		goal: function( action ){
+			$('#placar-' + action.team ).text(
+				action.score
+			);
+		},
+
+		score: function( Match ){
+			$.each(Match, function( item, value ){
+				if( item === 'time' ){
+					MM.Bar.update( value );
+				} else {
+					MM.goal({
+						team: item,
+						score: value
+					});
+				}
+			});
+		},
+
 		Bar: {
 			time: 0,
 			element: $('#barraMin'),
 			init: function(){
 				this.width = $('#barra-minuto').innerWidth() - 50 - 50;
-				this.step = parseInt( this.width / 50 );
+				this.step = parseInt( this.width / 60 );
 			},
 			update: function( time ){
 				this.element.animate({

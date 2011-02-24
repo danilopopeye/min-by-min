@@ -1,20 +1,22 @@
 // MM.Server
 var Server = module.exports = {
-	create: function(request, response) {
-		var MM = module.parent.exports;
+	create: function(req, res) {
+		var MM = module.parent.exports, message;
 
-		MM.SOCKET.broadcast( Server.parseURL(
-			require('url').parse( request.url )
-		) );
+		message = Server.getMessage( req.url );
 
-		response.writeHead( 405, { 'Content-Type': 'text/plain' });
-		response.write('Nothing to see here, move along!\n', 'utf8');
-		response.end();
+		message && MM.SOCKET.broadcast({
+			message: 'ADMIN: ' + message
+		});
+
+		res.writeHead( 405, { 'Content-Type': 'text/plain' });
+		res.write('Nothing to see here, move along!\n', 'utf8');
+		res.end();
 	},
-	parseURL: function( url ){
-		return {
-			href: url.pathname,
-			query: require('querystring').parse( url.query || '' )
-		};
+	getMessage: function( u ){
+		var url = require('url').parse( u ),
+			query = require('querystring').parse( url.query || '' );
+
+		return query.message || false;
 	}
 };

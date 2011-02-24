@@ -1,4 +1,5 @@
 module.exports = {
 	Server: require('./server'),
-	Socket: require('./socket')
+	Socket: require('./socket'),
+	Game: require('./game')
 };

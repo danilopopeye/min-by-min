@@ -22,14 +22,23 @@ Game = module.exports = {
 	reset: function(){
 		var M = this.Match;
 		M.time = M.home = M.away = 0;
+		Game.broadcast({ refresh: true });
 	},
 	init: function(){
+		clearInterval( this.timeout );
+
+		this.reset();
+
+		Game.broadcast({ time: 0, play: {
+			text: 'Começa a partida'
+		} });
+
 		this.timeout = setInterval(
 			Game.tick, 1000, Game
 		);
 	},
 	tick: function( Game ){
-		if( Game.Match.time === 60 ){
+		if( Game.Match.time === 10 ){
 			clearInterval( Game.timeout );
 
 			return Game.broadcast({
@@ -40,10 +49,15 @@ Game = module.exports = {
 			});
 		}
 
-		Game.broadcast({
-			time: Game.Match.time++,
-			play: Game.buildPlay()
-		});
+		var obj = {
+			time: Game.Match.time++
+		};
+
+		if( rand(5) < 2 ){
+			obj.play = Game.buildPlay();
+		}
+
+		Game.broadcast( obj );
 	},
 	buildPlay: function(){
 		var M = this.Match, RAND = rand( M.time * 7 ), team;
@@ -61,9 +75,9 @@ Game = module.exports = {
 		} else {
 			return {
 				text: [
-					PLAYERS[ rand( 25 ) ],
-					ACTIONS[ rand( 6 ) ],
-					PLAYERS[ rand( 25 ) ],
+					PLAYERS[ rand( PLAYERS.length ) ],
+					ACTIONS[ rand( ACTIONS.length ) ],
+					PLAYERS[ rand( PLAYERS.length ) ],
 				].join(' ')
 			};
 		}

@@ -15,6 +15,3 @@ socket.on( 'connection', MM.Socket.onConnection );
 // alias
 MM.SERVER = server;
 MM.SOCKET = socket;
-
-// Kick off
-MM.Game.init();

@@ -11,6 +11,8 @@
 			this.socket.on('message', this.onMessage );
 
 			this.Bar.init();
+
+			console && console.log('MM initialized');
 		},
 
 		announcement: function( message ){
@@ -28,6 +30,10 @@
 
 		onMessage: function( raw ){
 			console && console.log( 'message', arguments );
+
+			if( !!raw.refresh ){
+				MM.reset();
+			}
 
 			MM.Bar.update( raw.time );
 
@@ -74,6 +80,12 @@
 					width: ( this.time = time ) * this.step || 1
 				}, 'slow');
 			}
+		},
+
+		reset: function(){
+			$('li').remove();
+			this.Bar.update(0);
+			$('#placar-principal span').text(0);
 		}
 	};
 

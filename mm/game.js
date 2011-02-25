@@ -17,7 +17,7 @@ rand = function(n){
 
 Game = module.exports = {
 	Match: {
-		time: 0, home: 0, away: 0,
+		time: 0, home: 0, away: 0
 	},
 	reset: function(){
 		var M = this.Match;
@@ -64,7 +64,8 @@ Game = module.exports = {
 
 		// someone make a goal
 		if( RAND % 7 === 0 && RAND % 2 === 0 ){
-			var team = [ 'home', 'away' ][ RAND % 2 ];
+			team = [ 'home', 'away' ][ RAND % 2 ];
+
 			return {
 				goal: {
 					team: team,
@@ -77,7 +78,7 @@ Game = module.exports = {
 				text: [
 					PLAYERS[ rand( PLAYERS.length ) ],
 					ACTIONS[ rand( ACTIONS.length ) ],
-					PLAYERS[ rand( PLAYERS.length ) ],
+					PLAYERS[ rand( PLAYERS.length ) ]
 				].join(' ')
 			};
 		}

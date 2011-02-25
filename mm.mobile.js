@@ -2,7 +2,7 @@
 	var MM = window.MM;
 
 	MM.announcement = function( message ){
-		$('ul').append(
+		$('li:first,ul').eq(0).prepend(
 			'<li data-role="list-divider">'+
 				message + '<span class="ui-li-count">'+ MM.Bar.time +'</span>' +
 			'</li>'
@@ -10,7 +10,7 @@
 	};
 
 	MM.message = function( message ){
-		$('ul').append(
+		$('li:first,ul').eq(0).prepend(
 			'<li>'+
 				message + '<span class="ui-li-count">'+ MM.Bar.time +'</span>' +
 			'</li>'

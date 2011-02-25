@@ -13,14 +13,14 @@
 		},
 
 		announcement: function( message ){
-			$('ul').append(
+			$('li:first,ul').eq(0).prepend(
 				'<li>'+
 					'<p>'+ MM.Bar.time + ': ' + message +'</p>'+
 				'</li>'
 			);
 		},
 		message: function( message ){
-			$('ul').append(
+			$('li:first,ul').eq(0).prepend(
 				'<li>'+ MM.Bar.time + ': ' + message + '</li>'
 			);
 		},

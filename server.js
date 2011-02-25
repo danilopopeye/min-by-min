@@ -21,8 +21,3 @@ MM.CLUSTER = cluster( MM.SERVER )
 	.use( cluster.debug() )
 	.use( cluster.repl(8888) )
 	.listen(8080);
-
-setTimeout(function( MM ){
-	console.log('Cluster', MM.CLUSTER );
-	console.log('Children', MM.CLUSTER.children[0] );
-}, 1000, MM )

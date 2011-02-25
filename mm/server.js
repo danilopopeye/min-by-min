@@ -4,15 +4,13 @@ var Server = module.exports = {
 		var MM = module.parent.exports,
 			query = Server.getQuery( req.url );
 
-		console.log( query, typeof query.restart );
-
 		if( typeof query.restart !== undefined ){
 			MM.Game.init();
 		}
 
 		res.writeHead( 405, { 'Content-Type': 'text/plain' });
 		res.write(
-			'Nothing to see here, move along!\n' + JSON.stringify( MM.CLUSTER ),
+			'Nothing to see here, move along!\n',
 			'utf8'
 		);
 		res.end();

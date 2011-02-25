@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Minuto Mobile</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
+	<style type="text/css">
+		.ui-li-count, .ui-li-divider .ui-li-count { right:15px; }
+		#barraMin { height:16px;width:0px; }
+	</style>
+</head>
+<body>
+	<div data-role="page" data-theme="b">
+		<div data-role="header" id="placar-principal" data-position="fixed">
+			<h1>
+				Mandante
+					<span id="placar-home">0</span> x <span id="placar-away">0</span>
+				Advers&aacute;rio
+			</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" datatheme="d">
+				<li data-role="list-divider">
+					<div id="barraMin" class="ui-btn-up-c ui-corner-all">&nbsp;</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="Socket.IO-node/support/socket.io-client/socket.io.js"></script>
+	<script type="text/javascript" src="mm.js"></script>
+	<script type="text/javascript" src="mm.mobile.js"></script>
+</body>
+</html>

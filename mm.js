@@ -1,9 +1,6 @@
 (function(){
 	var d = new Date();
 	window.MM = {
-		game: {
-			id: d.getDate() + d.getMonth() + d.getFullYear()
-		},
 		socket: new io.Socket(null, { port: 8080, rememberTransport: false }),
 		init: function(){
 			this.socket.connect();
@@ -29,7 +26,7 @@
 		},
 
 		onMessage: function( raw ){
-			console && console.log( 'message', arguments );
+			console && console.log( 'MM.Message', raw );
 
 			if( !!raw.refresh ){
 				MM.reset();

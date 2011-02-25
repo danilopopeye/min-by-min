@@ -11,7 +11,10 @@ var Server = module.exports = {
 		}
 
 		res.writeHead( 405, { 'Content-Type': 'text/plain' });
-		res.write('Nothing to see here, move along!\n', 'utf8');
+		res.write(
+			'Nothing to see here, move along!\n' + JSON.stringify( MM.CLUSTER ),
+			'utf8'
+		);
 		res.end();
 	},
 	getQuery: function( u ){

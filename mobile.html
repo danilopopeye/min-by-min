@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
 	<style type="text/css">
 		.ui-li-count, .ui-li-divider .ui-li-count { right:15px; }
+		.ui-header .ui-title, .ui-footer .ui-title { margin: 0.6em 1em 0.8em; }
 		#barraMin { height:16px;width:0px; }
 	</style>
 </head>
@@ -20,11 +21,12 @@
 			</h1>
 		</div>
 		<div data-role="content">
-			<ul data-role="listview" datatheme="d">
-				<li data-role="list-divider">
-					<div id="barraMin" class="ui-btn-up-c ui-corner-all">&nbsp;</div>
-				</li>
-			</ul>
+			<ul data-role="listview" datatheme="d"></ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h1>
+				<div id="barraMin" class="ui-btn-up-c ui-corner-all">&nbsp;</div>
+			</h1>
 		</div>
 	</div>
 

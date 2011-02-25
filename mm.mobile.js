@@ -17,13 +17,7 @@
 		).listview('refresh');
 	};
 
-	MM.reset = function(){
-		this.Bar.update(0);
-		$('li:gt(0)').remove();
-		$('#placar-principal span').text(0);
-	}
-
 	$('div[data-role=page]').live('pageshow', function(){
-		MM.Bar.step = ( $('#barraMin').parent().innerWidth() - 30 ) / 60;
+		MM.Bar.step = ( $('#barraMin').parent().innerWidth() - 2 ) / 60;
 	});
 })();

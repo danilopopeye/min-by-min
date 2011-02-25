@@ -38,7 +38,7 @@ Game = module.exports = {
 		);
 	},
 	tick: function( Game ){
-		if( Game.Match.time === 10 ){
+		if( Game.Match.time === 60 ){
 			clearInterval( Game.timeout );
 
 			return Game.broadcast({
